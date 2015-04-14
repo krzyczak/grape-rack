@@ -1,0 +1,13 @@
+#!/bin/bash
+set -ev
+
+cd `dirname $0`/..
+
+
+./bin/rubocop --format simple
+
+./bin/puppet-lint puppet/manifests --fail-on-warnings --with-filename
+
+./bin/cane --no-doc
+
+echo 'Code quality passed'

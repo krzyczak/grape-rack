@@ -1,20 +1,28 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+ruby '2.2.2'
 
-gem 'rack'
-gem 'grape', '>= 0.11.0'
-gem 'rack-cors'
+gem 'grape'
+gem 'grape-entity'
 gem 'grape-swagger'
-
-group :development do
-  gem 'rake'
-  gem 'rubocop'
-end
-
-group :test do
-  gem 'rspec'
-  gem 'rack-test'
-end
+gem 'rack-cors'
 
 group :development, :test do
   gem 'pry'
+end
+
+group :development do
+  gem 'guard-bundler'
+  gem 'guard-rack'
+  gem 'rake'
+
+  # Code quality tools
+  gem 'cane', require: false
+  gem 'puppet-lint', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'rack-test'
+  gem 'rspec'
 end

@@ -6,9 +6,12 @@ require 'boot'
 
 Bundler.require :default, ENV['RACK_ENV']
 
-Dir[File.expand_path('../../api/**/*.rb', __FILE__)].each do |f|
-  file_loaded = require f
-  puts "Loading #{f} ".ljust(70, '.') + " [ \e[32m#{file_loaded.to_s.upcase}\e[0m ]"
+files_to_load = Dir[File.expand_path('../../api/**/*.rb', __FILE__)]
+files_to_load += Dir[File.expand_path('../../lib/**/*.rb', __FILE__)]
+
+files_to_load.each do |f|
+  require f
+  puts "Loading #{f} ".ljust(80, '.') + " [ \e[32mLOADED\e[0m ]"
 end
 
 require 'api'

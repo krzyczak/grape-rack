@@ -1,0 +1,15 @@
+sudo: false
+
+branches:
+  only: master
+
+language: ruby
+
+cache: bundler
+
+before_script:
+  - ./bin/bootstrap
+
+script:
+  - ./bin/test
+  - ./bin/changes

@@ -3,7 +3,7 @@ module Transcoder
     def initialize
       @filenames = ['', '.html', 'index.html', '/index.html']
       @rack_static = ::Rack::Static.new(
-        lambda { [404, {}, []] },
+        -> { [404, {}, []] },
         root: File.expand_path('../../public', __FILE__),
         urls: ['/']
       )
@@ -14,7 +14,7 @@ module Transcoder
         use Rack::Cors do
           allow do
             origins '*'
-            resource '*', headers: :any, methods: :get
+            resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options]
           end
         end
 
@@ -35,7 +35,12 @@ module Transcoder
         end
       end
 
-      # Serve error pages or respond with API response
+      render_response(response)
+    end
+
+    private
+
+    def render_response(response)
       case response[0]
       when 404, 500
         content = @rack_static.call(env.merge('PATH_INFO' => "/errors/#{response[0]}.html"))

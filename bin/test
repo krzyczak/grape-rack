@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+cd `dirname $0`/..
+
+if [ $# -gt 0 ]; then
+  set -v
+  eval "./bin/rspec $@"
+else
+  set -v
+  eval './bin/rspec'
+  eval './bin/quality'
+fi
+
+echo 'test complete'
