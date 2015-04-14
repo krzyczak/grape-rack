@@ -23,5 +23,5 @@ To use it
  http://localhost:9292/api/v1/docs
  ```
  
- # Additional information
- Created based on ``` https://github.com/dblock/grape-on-rack.git```
+# Additional information
+Created based on ``` https://github.com/dblock/grape-on-rack.git```
